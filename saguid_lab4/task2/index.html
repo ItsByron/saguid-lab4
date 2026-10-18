@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163d35">
+  <meta name="description" content="Find Cedarfield council meetings, local services, public notices, and ways to take part in your community.">
+  <title>Cedarfield | Community &amp; Council</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172b28;
+      --muted: #5c716c;
+      --green: #163d35;
+      --green-soft: #e7f0eb;
+      --line: #dce5e0;
+      --paper: #fbfcfa;
+      --white: #fff;
+      --coral: #cf624e;
+      --gold: #efbd58;
+      --blue: #466c83;
+      --serif: "Newsreader", Georgia, serif;
+      --sans: "DM Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; }
+
+    button, input { font: inherit; }
+
+    .wrap { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+    .utility {
+      background: var(--green);
+      color: #e8f1ed;
+      font-size: 12px;
+    }
+
+    .utility-inner {
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .utility p { margin: 0; }
+    .utility .place { color: #bad1c7; }
+    .utility a { color: inherit; text-decoration: none; }
+    .utility a:hover { text-decoration: underline; }
+
+    .header { background: var(--white); border-bottom: 1px solid var(--line); }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 17px;
+      height: 17px;
+      border: 2px solid #fff;
+      border-bottom: 0;
+      border-radius: 10px 10px 0 0;
+      transform: translateY(4px);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 23px;
+      height: 2px;
+      bottom: 9px;
+      background: var(--gold);
+    }
+
+    .brand-name { display: block; font-size: 17px; font-weight: 700; line-height: 1.1; }
+    .brand-sub { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; letter-spacing: 0; }
+
+    .nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 38px); }
+    .nav a { color: #334b46; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .nav a:hover { color: var(--coral); }
+
+    .nav .nav-cta {
+      padding: 11px 16px;
+      border-radius: 3px;
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .nav .nav-cta:hover { background: #24574b; color: var(--white); }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: var(--white);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    main { overflow: hidden; }
+
+    .hero { padding: 56px 0 60px; }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      align-items: center;
+      gap: clamp(40px, 7vw, 88px);
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: var(--coral);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.1px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--coral); }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 540px;
+      margin-bottom: 18px;
+      font-family: var(--serif);
+      font-size: clamp(45px, 5.5vw, 70px);
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 0.99;
+    }
+
+    h1 span { color: var(--green); font-style: italic; }
+
+    .hero-copy > p:not(.eyebrow) { max-width: 455px; margin-bottom: 27px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+    .button {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 17px;
+      border: 1px solid var(--green);
+      border-radius: 3px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .button:hover { background: #24574b; transform: translateY(-1px); }
+    .button.secondary { background: transparent; color: var(--green); }
+    .button.secondary:hover { background: var(--green-soft); }
+
+    .hero-visual { position: relative; min-width: 0; }
+
+    .hero-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.17 / 1;
+      object-fit: cover;
+      object-position: center 45%;
+      border-radius: 3px;
+      background: #d5e2dc;
+    }
+
+    .photo-caption {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 15px;
+      background: rgba(255, 255, 255, 0.96);
+      font-size: 11px;
+    }
+
+    .photo-caption strong { display: block; font-size: 12px; }
+    .photo-caption span { color: var(--muted); }
+    .photo-caption .caption-dot { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; background: var(--coral); }
+
+    .search-band { background: var(--green-soft); border-block: 1px solid #d8e5dd; }
+
+    .search-inner {
+      min-height: 91px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .search-intro { margin: 0; font-family: var(--serif); font-size: 23px; }
+    .search-intro span { color: var(--muted); font-family: var(--sans); font-size: 12px; }
+
+    .search-box {
+      width: min(430px, 48%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      border: 1px solid #bdcec4;
+      border-radius: 3px;
+      background: var(--white);
+    }
+
+    .search-box label { color: var(--green); font-size: 18px; }
+    .search-box input { width: 100%; min-width: 0; height: 46px; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 13px; }
+    .search-box:focus-within { outline: 2px solid #77a18e; outline-offset: 2px; }
+    .search-status { min-height: 19px; margin: 0; color: var(--muted); font-size: 12px; }
+
+    .section { padding: 65px 0; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 27px;
+    }
+
+    .section-heading .eyebrow { margin-bottom: 10px; }
+
+    h2 {
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.7vw, 43px);
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.05;
+    }
+
+    .text-link { color: var(--green); font-size: 13px; font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .text-link:hover { color: var(--coral); }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    .resource {
+      min-height: 194px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 22px 22px 21px 0;
+      text-decoration: none;
+    }
+
+    .resource + .resource { padding-left: 22px; border-left: 1px solid var(--line); }
+
+    .resource-number { margin-bottom: 22px; color: var(--coral); font-size: 11px; font-weight: 700; }
+    .resource h3 { margin-bottom: 7px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .resource p { max-width: 215px; margin-bottom: 15px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .resource .learn { margin-top: auto; color: var(--green); font-size: 12px; font-weight: 700; }
+    .resource:hover h3, .resource:hover .learn { color: var(--coral); }
+
+    .updates { background: #f1f5f2; border-block: 1px solid #e4ebe6; }
+
+    .updates-grid { display: grid; grid-template-columns: 1.12fr 0.88fr; gap: clamp(34px, 7vw, 88px); }
+
+    .notice-list { border-top: 1px solid var(--line); }
+
+    .notice {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .notice-date { color: var(--coral); font-size: 11px; font-weight: 700; line-height: 1.5; text-transform: uppercase; }
+    .notice h3 { margin-bottom: 5px; font-size: 14px; font-weight: 700; }
+    .notice p { margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+    .meeting-panel { align-self: start; padding: 25px; border-top: 4px solid var(--gold); background: var(--green); color: var(--white); }
+    .meeting-panel .eyebrow { margin-bottom: 15px; color: #f1ca75; }
+    .meeting-panel .eyebrow::before { background: #f1ca75; }
+    .meeting-panel h3 { margin-bottom: 19px; font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.08; }
+    .meeting-details { display: grid; gap: 12px; margin: 0 0 22px; padding: 0; list-style: none; }
+    .meeting-details li { display: grid; grid-template-columns: 76px 1fr; gap: 10px; font-size: 12px; }
+    .meeting-details strong { color: #bcd1c7; font-weight: 500; }
+    .meeting-panel .button { border-color: var(--gold); background: var(--gold); color: var(--ink); }
+    .meeting-panel .button:hover { background: #f6ce7c; }
+
+    .participate { padding: 54px 0; background: #f8e6df; }
+
+    .participate-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .participate .eyebrow { margin-bottom: 10px; }
+    .participate h2 { max-width: 610px; font-size: clamp(30px, 3.5vw, 39px); }
+    .participate p:not(.eyebrow) { max-width: 560px; margin: 10px 0 0; color: #5d6c66; font-size: 13px; }
+    .participate .button { flex: 0 0 auto; }
+
+    .footer { padding: 27px 0; background: var(--green); color: #e5eee9; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer p { margin: 0; font-size: 11px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .footer a { color: inherit; font-size: 11px; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 560px); }
+      .utility-inner { min-height: 34px; }
+      .header-inner { min-height: 70px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav {
+        position: absolute;
+        z-index: 2;
+        top: 104px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 18px 16px;
+        border-bottom: 1px solid var(--line);
+        background: var(--white);
+      }
+      .nav.open { display: flex; flex-direction: column; }
+      .nav a { padding: 12px 4px; }
+      .nav .nav-cta { margin-top: 5px; padding-inline: 14px; text-align: center; }
+      .hero { padding: 42px 0 44px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      h1 { max-width: 470px; font-size: clamp(47px, 11vw, 64px); }
+      .hero-photo { aspect-ratio: 1.4 / 1; }
+      .search-inner { align-items: stretch; flex-direction: column; gap: 12px; padding-block: 18px; }
+      .search-intro { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-size: 21px; }
+      .search-box { width: 100%; }
+      .section { padding: 47px 0; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 13px; }
+      .resource-grid { grid-template-columns: repeat(2, 1fr); }
+      .resource { min-height: 178px; padding: 18px 14px 18px 0; }
+      .resource + .resource { padding-left: 14px; }
+      .resource:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+      .resource:nth-child(4) { border-top: 1px solid var(--line); }
+      .resource-number { margin-bottom: 16px; }
+      .updates-grid { grid-template-columns: 1fr; gap: 30px; }
+      .meeting-panel { padding: 22px; }
+      .participate-inner { align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 420px) {
+      .utility .place { max-width: 190px; }
+      .brand-name { font-size: 16px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .photo-caption { right: 9px; bottom: 9px; left: 9px; padding: 10px 11px; }
+      .notice { grid-template-columns: 64px 1fr; gap: 10px; }
+      .search-intro { align-items: flex-start; flex-direction: column; gap: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="utility">
+    <div class="wrap utility-inner">
+      <p class="place">CEDARFIELD, YOUR COMMUNITY</p>
+      <p><a href="#notices">Service update: Fall street works schedule is now available</a></p>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Cedarfield community and council home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><span class="brand-name">Cedarfield</span><span class="brand-sub">COMMUNITY &amp; COUNCIL</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">&#9776;</button>
+      <nav class="nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#government">Local government</a>
+        <a href="#notices">News &amp; notices</a>
+        <a href="#meetings">Meetings</a>
+        <a class="nav-cta" href="#participate">Get involved</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">A town that works together</p>
+          <h1 id="hero-title">Your community.<br><span>Your say.</span></h1>
+          <p>Know what is happening in Cedarfield, understand how local decisions are made, and find your next way to take part.</p>
+          <div class="hero-actions">
+            <a class="button" href="#government">Explore local government <span aria-hidden="true">&#8594;</span></a>
+            <a class="button secondary" href="#meetings">Upcoming meetings</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-photo" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Neighbors spending time together outdoors" fetchpriority="high">
+          <div class="photo-caption">
+            <div><strong>Good decisions start with good conversations.</strong><span>Find a place at the table.</span></div>
+            <span class="caption-dot" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-band" aria-label="Search the portal">
+      <div class="wrap search-inner">
+        <p class="search-intro">What are you looking for? <span>Search local information</span></p>
+        <div class="search-box">
+          <label for="portal-search" aria-hidden="true">&#9906;</label>
+          <input id="portal-search" type="search" placeholder="Try meetings, permits, or parks" autocomplete="off">
+        </div>
+        <p class="search-status" id="search-status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section" id="government" aria-labelledby="government-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">Start here</p><h2 id="government-title">Find your way around</h2></div>
+          <a class="text-link" href="#participate">See all community services</a>
+        </div>
+        <div class="resource-grid">
+          <a class="resource searchable" data-search="council representatives mayor decisions local government" href="#meetings">
+            <span class="resource-number">01 / COUNCIL</span><h3>Meet your council</h3><p>Get to know your representatives and the work they do.</p><span class="learn">Council &amp; leadership &#8594;</span>
+          </a>
+          <a class="resource searchable" data-search="public meetings calendar agendas minutes decisions" href="#meetings">
+            <span class="resource-number">02 / MEETINGS</span><h3>Follow decisions</h3><p>See the agenda, attend a meeting, or catch up on minutes.</p><span class="learn">Agendas &amp; minutes &#8594;</span>
+          </a>
+          <a class="resource searchable" data-search="permits planning building zoning development applications" href="#notices">
+            <span class="resource-number">03 / PLANNING</span><h3>Shape our places</h3><p>Explore plans, permits, and proposals open for comment.</p><span class="learn">Planning &amp; permits &#8594;</span>
+          </a>
+          <a class="resource searchable" data-search="parks roads waste water transport services" href="#notices">
+            <span class="resource-number">04 / SERVICES</span><h3>Local services</h3><p>Find practical information for the things we share.</p><span class="learn">Browse services &#8594;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section updates" id="notices" aria-labelledby="notices-title">
+      <div class="wrap updates-grid">
+        <div>
+          <div class="section-heading">
+            <div><p class="eyebrow">The latest</p><h2 id="notices-title">News &amp; notices</h2></div>
+          </div>
+          <div class="notice-list">
+            <article class="notice searchable" data-search="street works road construction traffic spring schedule north avenue">
+              <div class="notice-date">18 Oct<br>Public works</div>
+              <div><h3>Fall street works schedule published</h3><p>Review planned road repairs and temporary traffic changes across Cedarfield.</p></div>
+            </article>
+            <article class="notice searchable" data-search="parks community garden neighborhood grant applications funding">
+              <div class="notice-date">15 Oct<br>Community</div>
+              <div><h3>Small grants open for neighborhood projects</h3><p>Applications are open for resident-led projects that bring neighbors together.</p></div>
+            </article>
+            <article class="notice searchable" data-search="planning public consultation library renovation feedback proposal">
+              <div class="notice-date">11 Oct<br>Have your say</div>
+              <div><h3>Library renovation plans ready for comment</h3><p>Share feedback on the proposed improvements before the consultation closes.</p></div>
+            </article>
+          </div>
+        </div>
+        <aside class="meeting-panel" id="meetings" aria-labelledby="meeting-title">
+          <p class="eyebrow">Next public meeting</p>
+          <h3 id="meeting-title">Town Council<br>Regular Session</h3>
+          <ul class="meeting-details">
+            <li><strong>Date</strong><span>Tuesday, October 27</span></li>
+            <li><strong>Time</strong><span>6:30 pm</span></li>
+            <li><strong>Where</strong><span>Civic Hall, 14 Oak Street</span></li>
+            <li><strong>Agenda</strong><span>Budget review, park improvements</span></li>
+          </ul>
+          <a class="button" href="#participate">View meeting details <span aria-hidden="true">&#8594;</span></a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="participate" id="participate" aria-labelledby="participate-title">
+      <div class="wrap participate-inner">
+        <div>
+          <p class="eyebrow">Make a difference close to home</p>
+          <h2 id="participate-title">Cedarfield is better when you're part of it.</h2>
+          <p>Speak at a council meeting, join a neighborhood group, or share feedback on a local proposal.</p>
+        </div>
+        <a class="button" href="mailto:community@cedarfield.example">Ways to participate <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>&copy; 2026 Cedarfield Community &amp; Council</p>
+      <div class="footer-links"><a href="#top">Contact</a><a href="#top">Accessibility</a><a href="#top">Privacy</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const searchInput = document.querySelector("#portal-search");
+    const searchStatus = document.querySelector("#search-status");
+    const searchableItems = [...document.querySelectorAll(".searchable")];
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#primary-nav");
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let matches = 0;
+
+      for (const item of searchableItems) {
+        const text = `${item.textContent} ${item.dataset.search || ""}`.toLowerCase();
+        const visible = !query || text.includes(query);
+        item.hidden = !visible;
+        if (visible) matches += 1;
+      }
+
+      searchStatus.textContent = query
+        ? `${matches} result${matches === 1 ? "" : "s"} found`
+        : "";
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+      navigation.classList.toggle("open", !isOpen);
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation");
+        navigation.classList.remove("open");
+      }
+    });
+  </script>
+</body>
+</html>
